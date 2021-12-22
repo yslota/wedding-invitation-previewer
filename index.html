@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Licorice&family=Mea+Culpa&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bree+Serif&family=Oooh+Baby&family=Pushster&display=swap" rel="stylesheet">
+
+
+
+</head>
+<body>
+<div class="container">
+
+    <h2 class="title">Wedding Invitation Planner</h2>
+       <div class="wrapper">
+
+                <div class="template_form">
+                      <form action="">
+                          <p>
+                              <label>1st Name:</label>
+                              <input  type="text" id ="name1"  maxlength="25" placeholder="Your name.." onkeyup="myOnkeyup('name1','name1_new')">
+                          </p>
+                          <p>
+                              <label>2nd Name:</label>
+                              <input  type="text" id ="name2" maxlength="25" placeholder="Your name.." onkeyup="myOnkeyup('name2','name2_new')">
+                          </p>
+                          <p>
+                              <label>Last Name:</label>
+                              <input  type="text" id ="lastName" maxlength="25" placeholder="Last Name" onkeyup="myOnkeyup('lastName','lastName_new')">
+                          </p>
+                          <p>
+                              <label>Date:</label>
+                              <input  type="date" id ="date" onchange="displayDate()">
+                          </p>
+                          <p>
+                              <label>Wedding Location</label>
+                              <input  type="text" id ="location" maxlength="80" placeholder="Wedding Location.." onkeyup="myOnkeyup('location','location_new')">
+                          </p>
+
+                      </form>
+
+                      <div id="imgDesign" style="font-size: 13px; font-style: italic;">Colored Paisley</div>
+                      <div class="row">
+                        <div class="column">
+                            <img class="demo " src="img/Inv3.jpeg" style="width:100%" onclick="currentDesign(this,'Bree Serif','20px','40px')" alt="Classy Wedding">
+                          </div>
+
+                        <div class="column">
+
+                          <img class="demo " src="img/Inv1.jpeg" style="width:100%"   onclick="currentDesign(this,'Imperial Script','30px','80px')" alt="Autumn Flowers">
+                        </div>
+                        <div class="column">
+                            <img class="demo " src="img/Inv2.jpeg" style="width:100%" onclick="currentDesign(this,'Architects Daughter','20px','70px')" alt="Pastel Boho">
+                          </div>
+
+                          <div class="column">
+                            <img class="demo " src="img/Inv4.jpeg" style="width:100%" onclick="currentDesign(this,'Pushster','20px','50px')" alt="Colored Paisley">
+                          </div>
+
+                      </div>
+                  </div>
+
+
+                <div class="template_design" id="template_design">
+                    <div style= "text-align: center">
+                    <p  id= "name1_new"  style="margin-top: 200px; text-transform: uppercase; font-size: 40px; "></p>
+                    <p style="margin-top: 100px; ">You are warmly invited to attend the wedding ceremony of </p>
+                    <p id= "name2_new"  style="margin-top: 50px; text-transform: capitalize "></p>
+                    <p id= "lastName_new" style="margin-top: 50px; text-transform: uppercase;"></p>
+                    <p id= "date_new" style="margin-top: 50px;"></p>
+                    <p id= "location_new" style="margin-top: 50px;  text-transform: capitalize "></p>
+
+                </div>
+
+                </div>
+
+
+            </div>
+
+
+</div>
+
+<script>
+
+function UpperCase(_str) {
+    return _str.charAt(0).toUpperCase() + _str.substring(1, _str.length);
+}
+function myOnkeyup(element_old,element_new)
+    {
+
+        if (element_old == "name1" || element_old == "name2")
+        {
+            document.getElementById("name1_new").innerHTML = document.getElementById("name1").value.slice(0,1)+"&"+document.getElementById("name2").value.slice(0,1);
+           document.getElementById("name2_new").innerHTML = document.getElementById("name1").value+"&"+ UpperCase(document.getElementById("name2").value);
+            return;
+        }
+        let _val = document.getElementById(element_old).value;
+
+
+        document.getElementById(element_new).innerHTML =_val.slice(0,40)+"</br>"+_val.slice(40);
+    }
+
+
+
+
+
+    function displayDate()
+    {
+
+    let dateVal = document.getElementById("date").value;
+
+    const d = new Date(dateVal);
+    const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+    const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+    const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+    document.getElementById("date_new").innerHTML =`${da}-${mo}-${ye}`;
+
+    }
+
+
+function currentDesign(imgs,_fontFamily,fz1,fz2) {
+    var bgImg = document.getElementById("template_design");
+    bgImg.style.backgroundImage = "url(" + imgs.src + ")";
+    document.getElementById("imgDesign").innerHTML = imgs.alt;
+    bgImg.style.fontFamily = _fontFamily;
+    bgImg.style.fontSize  =fz1;
+    var name1_new = document.getElementById("name1_new");
+    name1_new.style.fontSize  = fz2;
+
+}
+
+
+
+</script>
+
+</body>
+</html>
